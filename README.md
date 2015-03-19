@@ -22,6 +22,6 @@ bower install
 ```
 
 
-Run
-`grunt serve` runs development server
+####Run  
+`grunt serve` runs development server  
 `grunt` or `grunt build` build project
