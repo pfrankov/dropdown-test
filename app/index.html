@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+		<title>Dropdown component</title>
+
+		<!-- build:css css/combined.css -->
+		<link href="sass/dropdown.css" rel="stylesheet" />
+		<link href="sass/common.css" rel="stylesheet" />
+		<!-- endbuild -->
+
+		<!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		They formed the band Wilson Philips (with the daughter of Michelle Philips of the Mamas and Papas) and their
+		first album was a worldwide hit. Today they are both married and live in
+		<div class="dropdown" id="question-1" tabindex="0">
+			<div class="dropdown-list">
+				<div class="dropdown-list-element" data-value="1">Paris</div>
+				<div class="dropdown-list-element dropdown-list-element_answer" data-value="2" data-valid="1">Moscow</div>
+				<div class="dropdown-list-element dropdown-list-element_checked" data-value="3">San Francisco</div>
+			</div>
+
+			<div class="dropdown-selected">
+				San Francisco
+			</div>
+		</div>. I always thought Carnie
+		was really cool. Especially when she was a teenager and had bright red spiky hair. But, like most older sisters,
+		she wasn’t at all interested in her younger sister. I desperately wanted to be with her and her friends, and
+		sometimes I used to follow them, but she hated that.
+
+
+
+		<!-- build:js js/vendor.js -->
+		<!-- bower:js -->
+		<script src="bower_components/jquery/dist/jquery.js"></script>
+		<!-- endbower -->
+		<!-- endbuild -->
+
+		<!-- build:js js/combined.js -->
+		<script src="js/common.js"></script>
+		<script src="js/components/dropdown.js"></script>
+		<!-- endbuild -->
+	</body>
+</html>

@@ -1,0 +1,228 @@
+@charset "utf-8";
+
+//////////////
+//  CONFIG  //
+//////////////
+$MIN_WIDTH: 100%;
+$MAX_WIDTH: 300px;
+
+
+//////////////
+//  MIXINS  //
+//////////////
+@mixin fade-out-gradient ($color:#fff) {
+	background: linear-gradient(left, rgba($color, 0), rgba($color, 100) 30%);
+}
+
+@mixin fade-out($size: 35px, $color:#fff) {
+	position: absolute;
+	width: $size;
+	top: 0;
+	right: 0;
+	bottom: 0;
+
+	@include fade-out-gradient($color);
+}
+
+
+
+
+
+//////////////////////////
+//  DROPDOWN COMPONENT  //
+//////////////////////////
+
+.dropdown {
+	position: relative;
+	display: inline-block;
+	margin: -2px .25em;
+	line-height: 1;
+	user-select: none;
+	cursor: pointer;
+	max-width: $MAX_WIDTH;
+
+
+
+	&_active {
+		z-index: 100;
+	}
+
+	&_active &-list {
+		display: block;
+	}
+
+
+
+	&-list {
+		display: none;
+		transition: all .2s;
+		border: 1px solid #ccc;
+		border-radius: 2px;
+		width: 100%;
+		min-width: $MIN_WIDTH;
+		max-width: $MAX_WIDTH;
+		position: absolute;
+		top: 100%;
+		margin-top: 3px;
+		box-sizing: border-box;
+		box-shadow: 0 0 18px #fff;
+		overflow: hidden;
+
+		// Can be turned off by applying .dropdown_multiline class
+		white-space: nowrap;
+
+
+
+		&-element {
+			padding: 5px 9px;
+			padding-right: 30px;
+			background: #fff;
+			transition: background .1s;
+			user-select: none;
+			overflow: hidden;
+			position: relative;
+
+			&:before {
+				@include fade-out();
+				content: "";
+			}
+
+
+			&_answer {
+				$color: #edfad4;
+				background: $color;
+				&:before {
+					@include fade-out-gradient($color);
+				}
+			}
+
+			&:hover,
+			&_hover {
+				$color: #ffffd9;
+				background: $color;
+				&:before {
+					@include fade-out-gradient($color);
+				}
+			}
+
+
+
+
+
+			// Checked Icon
+			&_checked:after {
+				font-family: "Icons";
+				content: "\63";
+				position: absolute;
+				right: 6px;
+				top: 0;
+				bottom: 0;
+				margin: auto;
+				height: 1em;
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+			}
+
+		}
+	}
+
+
+	&_multiline &-list,
+	&_multiline &-selected {
+		white-space: normal;
+	}
+
+	$valid-bg-color: #add166;
+	$valid-hover-border-color: #add166;
+	$error-bg-color: #f58e8e;
+	$error-hover-border-color: #db7f7f;
+
+	////////////////////////
+	//  Selected Element  //
+	////////////////////////
+	&-selected {
+		border: 1px solid #ccc;
+		border-radius: 3px;
+		background: #fff;
+		padding: 2px 8px;
+		padding-right: 35px;
+		transition: all .1s;
+		overflow: hidden;
+		position: relative;
+		display: inline-block;
+		vertical-align: middle;
+		box-sizing: border-box;
+		max-width: $MAX_WIDTH;
+		white-space: nowrap;
+
+		&:before {
+			@include fade-out;
+			content: "";
+		}
+
+		// Chevron Icon
+		&:after {
+			font-family: "Icons";
+			content: "\64";
+			position: absolute;
+			right: 4px;
+			top: 0;
+			bottom: 0;
+			margin: auto;
+			height: 1em;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+		}
+
+		&:active {
+			background: #f5f5f5;
+			border-color: #aaaaaa;
+		}
+	}
+
+
+	//////////////////
+	//  Validation  //
+	//////////////////
+	&_valid &-selected {
+		color: #fff;
+		border-color: $valid-bg-color;
+		background-color: $valid-bg-color;
+
+		&:before {
+			@include fade-out-gradient($valid-bg-color);
+		}
+	}
+	&_error &-selected {
+		color: #fff;
+		border-color: $error-bg-color;
+		background-color: $error-bg-color;
+
+		&:before {
+			@include fade-out-gradient($error-bg-color);
+		}
+	}
+
+	/////////////
+	//  Hover  //
+	/////////////
+	&:hover &-selected,
+	&:hover &-list,
+	&:focus &-selected,
+	&:focus &-list {
+		border-color: #aaaaaa;
+	}
+
+	&_valid:hover &-selected,
+	&_valid:focus &-selected {
+		border-color: $valid-hover-border-color;
+	}
+	&_error:hover &-selected,
+	&_error:focus &-selected {
+		border-color: $error-hover-border-color;
+	}
+
+	&:focus {
+		outline: none;
+	}
+}
